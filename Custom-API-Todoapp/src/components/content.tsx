@@ -1,5 +1,6 @@
 import type { JSX } from "react";
 import React, { useState } from "react";
+import axios from "axios";
 
 interface Todo {
     title: string;
@@ -11,7 +12,7 @@ function Content(): JSX.Element {
     const [todos, settodos] = useState<Todo[]>([]);
     const [int, args] = useState<string>("");
 
-    const submitconfig = (e: React.FormEvent) => {
+    const submitconfig = async (e: React.FormEvent) => {
         e.preventDefault();
 
         if (!int.trim()) {
@@ -24,13 +25,15 @@ function Content(): JSX.Element {
         }
 
         try {
-            settodos([...todos, newTodo]);
+            const res = await axios.post("http://localhost:8000/api/todos", newTodo);
+            settodos([...todos, res.data]);
         } catch (e) {
             console.log(e);
         }
 
         args("");
     }
+
 
     return (
         <div className="container">
