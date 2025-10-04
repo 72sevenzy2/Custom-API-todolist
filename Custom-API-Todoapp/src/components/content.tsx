@@ -1,7 +1,7 @@
 import type { JSX } from "react";
 import React, { useState } from "react";
 import axios from "axios";
-
+ 
 interface Todo {
     title: string;
     id: number
@@ -36,9 +36,13 @@ function Content(): JSX.Element {
 
 
     return (
+       
+    
         <div className="container">
+            
+             <h2 className="title">My Todo List</h2>
             <form onSubmit={submitconfig}>
-                <input type="text" placeholder="Enter todolist" value={int}
+                <input type="text" placeholder="Enter Todolist" value={int}
                     onChange={(e) => args(e.target.value)} />
                 <button type="submit">Add todos</button>
             </form>
@@ -49,6 +53,7 @@ function Content(): JSX.Element {
                 ))}
             </ul>
         </div>
+        
     )
 }
 
