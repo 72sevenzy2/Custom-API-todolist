@@ -25,9 +25,9 @@ function Content(): JSX.Element {
         }
 
         try {
-            const res = await axios.post("http://localhost:8000/api/todos", newTodo);
+            const res = await axios.post("http://localhost:4000/api/todos", newTodo);
             settodos([...todos, res.data]);
-        } catch (e) {
+        } catch (e) {   
             console.log(e);
         }
 

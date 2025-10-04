@@ -2,7 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 dotenv.config();
-import { todoList } from "./memory.js";
+import { todoList, saveTodos } from "./memory.js";
 
 const app = express();
 
@@ -16,7 +16,7 @@ app.use(cors({
 }));
 
 app.use(express.static("../src"));
-
+ 
 // test request
 app.get("/todos", (req, res) => {
     if (req.method === "GET") {
@@ -33,6 +33,7 @@ app.post("/api/todos", (req, res) => {
     }
     const newTodo = { title, id };
     todoList.push(newTodo);
+    saveTodos(); // save to JSON
     res.status(200).send(newTodo);
 });
 app.listen(port, () => {
